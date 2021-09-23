@@ -1,0 +1,3 @@
+apache-airflow
+dbt
+psycopg2==2.8.2
