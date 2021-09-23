@@ -110,7 +110,7 @@ def clear_table(database, table_name):
 
 def add_to_table_from_dataset(source_path, table_name):
     
-    conn = get_db_connection('bez')
+    conn = get_db_connection(DATABASE_DEV)
     cursor = conn.cursor()
 
     print("Setting up dataframe ...")
@@ -136,7 +136,21 @@ def add_to_table_from_dataset(source_path, table_name):
         print(e)
 
 
-if __name__ == '__main__':
-  # i need to run thus files in the dag.
-  clear_table(DATABASE_BEZ, RICHARD_TABLE_NAME)
-  add_to_table_from_dataset(DATA_SOURCE_ADDRES,RICHARD_TABLE_NAME)
+# if __name__ == '__main__':
+# i need to run thus files in the dag.
+
+def main():
+    create_table(DATABASE_DEV, richards_table_query)
+    clear_table(DATABASE_DEV, RICHARD_TABLE_NAME)
+    add_to_table_from_dataset(DATA_SOURCE_ADDRES,RICHARD_TABLE_NAME)
+
+# Function to check the proper insertion of data
+def read_from_table(database, table):
+    conn =get_db_connection(database)
+    cursor = conn.cursor()
+    cursor.execute(f'Select * from {table}')
+    result = cursor.fetchall()
+
+    print(result)
+    conn.close()
+# read_from_table(DATABASE_DEV, RICHARD_TABLE_NAME)
