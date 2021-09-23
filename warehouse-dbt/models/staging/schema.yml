@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: richards_sensors
+    description: 'Loaded data from csv'
+    database: development
+    schema: public
+    tables: 
+      - name: richards_sensors
