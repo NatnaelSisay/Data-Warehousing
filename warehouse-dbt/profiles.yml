@@ -1,0 +1,24 @@
+default:
+  outputs:
+
+    dev:
+      type: postgres
+      threads: 4
+      host: localhost
+      port: 5432
+      user: java
+      pass: none
+      dbname: development
+      schema: development
+
+    prod:
+      type: postgres
+      threads: 4
+      host: localhost
+      port: 5432
+      user: java
+      pass: none
+      dbname: production
+      schema: production
+
+  target: dev
